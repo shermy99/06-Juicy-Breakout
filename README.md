@@ -34,8 +34,8 @@ Please list the features you add in the README.md. You will be awarded one point
 
 The grading criteria will be as follows:
 
-[1 point] Assignment turned in on time
-[1] Repository contains a descriptive README.md
-[1] No (script) syntax errors
-[1] No other runtime errors
-[16] Features to make the game more "juicy"
+ - [1 point] Assignment turned in on time
+ - [1] Repository contains a descriptive README.md
+ - [1] No (script) syntax errors
+ - [1] No other runtime errors
+ - [16] Features to make the game more "juicy"
