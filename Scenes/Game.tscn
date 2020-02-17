@@ -29,9 +29,15 @@ margin_left = -72.0
 margin_top = -16.0
 margin_right = 72.0
 margin_bottom = 16.0
+color = Color( 0.992157, 0.494118, 0.0784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
 shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="Paddle"]
 
 [node name="Wall" type="StaticBody2D" parent="."]
 
@@ -222,6 +228,9 @@ margin_bottom = 112.0
 align = 1
 valign = 1
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Timer" type="Timer" parent="Starting"]
 wait_time = 10.0

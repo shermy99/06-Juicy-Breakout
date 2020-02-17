@@ -2,13 +2,12 @@
 
 [ext_resource path="res://Scripts/Tile.gd" type="Script" id=1]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 16 )
 
 [node name="Tile" type="StaticBody2D" groups=[
 "Tiles",
 ]]
-editor/display_folded = true
 position = Vector2( 104, 296 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -20,6 +19,14 @@ margin_left = -32.0
 margin_top = -16.0
 margin_right = 32.0
 margin_bottom = 16.0
+color = Color( 0.878431, 0.192157, 0.203922, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 4 )
+shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
