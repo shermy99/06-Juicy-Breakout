@@ -4,7 +4,7 @@ This is an opportunity for you to implement some of the "juicy" features as demo
 
 I have provided a simple, generic brick breaker game, built in Godot. You can use the presentation as a guide or use your own imagination, but your assignment is to make the game feel more "juicy": kinetic, reactive, physical.
 
-Please list the features you add in the README.md. You will be awarded one point per feature you add (including a soundtrack and sound effects). Some of the features included in the presentation include:
+Please list the features you add in the README.md. You will be awarded one point per feature you add (including a soundtrack and sound effects). Some of the features demonstrated in the presentation include:
  - Changing the color of the paddle, ball, and blocks
  - Animate how the blocks and the paddle appear on the screen
  - Squeeze and stretch the paddle
