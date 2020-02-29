@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Paddle.gd" type="Script" id=2]
@@ -17,6 +17,27 @@
 [ext_resource path="res://assets/mouth.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/Pupil.gd" type="Script" id=16]
 [ext_resource path="res://Scripts/Mouth.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/Background.gd" type="Script" id=18]
+[ext_resource path="res://assets/star_01.png" type="Texture" id=19]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.16, 0.371429, 0.554286, 0.771429, 0.891429, 1 )
+colors = PoolColorArray( 0.909804, 0.933333, 0.215686, 1, 0.976471, 0.223529, 0.223529, 1, 0.890196, 0.607843, 0.607843, 1, 0.87451, 0.854902, 0.309804, 1, 0.935646, 0.925591, 0.646053, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+spread = 90.0
+gravity = Vector3( 0, 50, 0 )
+initial_velocity = 120.0
+initial_velocity_random = 0.2
+angular_velocity = 10.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 3 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 72, 16 )
@@ -28,11 +49,14 @@ script = ExtResource( 1 )
 margin_right = 1022.0
 margin_bottom = 599.0
 color = Color( 0.286275, 0.313726, 0.341176, 1 )
+script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Timer" type="Timer" parent="Background"]
+wait_time = 0.2
+autostart = true
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -42,6 +66,18 @@ script = ExtResource( 8 )
 [node name="Paddle" type="KinematicBody2D" parent="."]
 position = Vector2( 544, 552 )
 script = ExtResource( 2 )
+
+[node name="Confetti" type="Particles2D" parent="Paddle"]
+rotation = 4.71239
+emitting = false
+amount = 20
+lifetime = 1.2
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.85
+local_coords = false
+process_material = SubResource( 4 )
+texture = ExtResource( 19 )
 
 [node name="ColorRect" type="ColorRect" parent="Paddle"]
 margin_left = -72.0
@@ -315,4 +351,5 @@ volume_db = -20.0
 stream = ExtResource( 12 )
 volume_db = -30.0
 autoplay = true
+[connection signal="timeout" from="Background/Timer" to="Background" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Starting/Timer" to="Starting" method="_on_Timer_timeout"]
