@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Paddle.gd" type="Script" id=2]
@@ -6,6 +6,17 @@
 [ext_resource path="res://Scripts/Score.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Lives.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Starting.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Tile Row.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=8]
+[ext_resource path="res://assets/boing2.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/blip.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/applause2_x.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/Chiptronical.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/pupil.png" type="Texture" id=13]
+[ext_resource path="res://assets/eye.png" type="Texture" id=14]
+[ext_resource path="res://assets/mouth.png" type="Texture" id=15]
+[ext_resource path="res://Scripts/Pupil.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/Mouth.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 72, 16 )
@@ -13,16 +24,24 @@ extents = Vector2( 72, 16 )
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1022.0
+margin_bottom = 599.0
+color = Color( 0.286275, 0.313726, 0.341176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Background"]
+
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
+script = ExtResource( 8 )
 
 [node name="Paddle" type="KinematicBody2D" parent="."]
 position = Vector2( 544, 552 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="ColorRect" type="ColorRect" parent="Paddle"]
 margin_left = -72.0
@@ -39,6 +58,34 @@ shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="Paddle"]
 
+[node name="Left Eye" type="Sprite" parent="Paddle"]
+position = Vector2( -64.3521, -1.39764 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 14 )
+
+[node name="Left Pupil" type="Sprite" parent="Paddle"]
+position = Vector2( -64.5114, -2.99872 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
+script = ExtResource( 16 )
+
+[node name="Right Eye" type="Sprite" parent="Paddle"]
+position = Vector2( 67.6074, -2.45026 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 14 )
+
+[node name="Right Pupil" type="Sprite" parent="Paddle"]
+position = Vector2( 67.7224, -4.55554 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 13 )
+script = ExtResource( 16 )
+
+[node name="Mouth" type="Sprite" parent="Paddle"]
+position = Vector2( 0, 16.3113 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 15 )
+script = ExtResource( 17 )
+
 [node name="Wall" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
@@ -46,7 +93,10 @@ polygon = PoolVector2Array( 0, 632, 0, 0, 1024, 0, 1024, 632, 1064, 632, 1064, -
 
 [node name="Tiles" type="Node2D" parent="."]
 
-[node name="Tile Row 1" type="Node2D" parent="Tiles"]
+[node name="Tile Row 1" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 7 )
 
 [node name="Tile" parent="Tiles/Tile Row 1" instance=ExtResource( 3 )]
 position = Vector2( 184, 296 )
@@ -78,7 +128,10 @@ position = Vector2( 760, 296 )
 [node name="Tile10" parent="Tiles/Tile Row 1" instance=ExtResource( 3 )]
 position = Vector2( 832, 296 )
 
-[node name="Tile Row 2" type="Node2D" parent="Tiles"]
+[node name="Tile Row 2" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 7 )
 
 [node name="Tile" parent="Tiles/Tile Row 2" instance=ExtResource( 3 )]
 position = Vector2( 184, 256 )
@@ -110,7 +163,10 @@ position = Vector2( 760, 256 )
 [node name="Tile10" parent="Tiles/Tile Row 2" instance=ExtResource( 3 )]
 position = Vector2( 832, 256 )
 
-[node name="Tile Row 3" type="Node2D" parent="Tiles"]
+[node name="Tile Row 3" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 7 )
 
 [node name="Tile" parent="Tiles/Tile Row 3" instance=ExtResource( 3 )]
 position = Vector2( 184, 216 )
@@ -142,7 +198,10 @@ position = Vector2( 760, 216 )
 [node name="Tile10" parent="Tiles/Tile Row 3" instance=ExtResource( 3 )]
 position = Vector2( 832, 216 )
 
-[node name="Tile Row 4" type="Node2D" parent="Tiles"]
+[node name="Tile Row 4" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 7 )
 
 [node name="Tile" parent="Tiles/Tile Row 4" instance=ExtResource( 3 )]
 position = Vector2( 184, 176 )
@@ -174,7 +233,10 @@ position = Vector2( 760, 176 )
 [node name="Tile10" parent="Tiles/Tile Row 4" instance=ExtResource( 3 )]
 position = Vector2( 832, 176 )
 
-[node name="Tile Row 5" type="Node2D" parent="Tiles"]
+[node name="Tile Row 5" type="Node2D" parent="Tiles" groups=[
+"Tile Row",
+]]
+script = ExtResource( 7 )
 
 [node name="Tile" parent="Tiles/Tile Row 5" instance=ExtResource( 3 )]
 position = Vector2( 184, 136 )
@@ -234,4 +296,23 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="Starting"]
 wait_time = 10.0
+
+[node name="Comet" type="Node2D" parent="."]
+
+[node name="Blip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -20.0
+
+[node name="Boing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -20.0
+
+[node name="Applause" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -20.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -30.0
+autoplay = true
 [connection signal="timeout" from="Starting/Timer" to="Starting" method="_on_Timer_timeout"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/applause2_x.wav-2287d0f6ee503b2f4c62af18b2c88d32.sample"
+
+[deps]
+
+source_file="res://assets/applause2_x.wav"
+dest_files=[ "res://.import/applause2_x.wav-2287d0f6ee503b2f4c62af18b2c88d32.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
